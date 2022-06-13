@@ -22,6 +22,15 @@ app.use((request, response, next) => {
     "Access-Control-Allow-Methods",
     "GET, POST, DELETE, PATH, OPTIONS"
   );
+  next();
+});
+
+app.use("/api/posts", (request, response, next) => {
+  const post = request.body;
+  console.log(post);
+  response.status(201).json({
+    message : "Post is recieved",
+  });
 });
 
 // This will update the page with pre-populated posts
@@ -43,5 +52,8 @@ app.use("/api/posts", (request, response, next) => {
     posts: posts,
   });
 });
+
+// Method to add new posts
+// app.use((request, response, next))
 
 module.exports = app;
